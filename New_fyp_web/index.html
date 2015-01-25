@@ -1,0 +1,348 @@
+<html>
+<head>
+<title>QuadControl</title>
+<!--
+<?php
+shell_exec('gpio mode 0 out');
+
+if (isset($_POST['button1'])) 
+{ 
+   $output = shell_exec('gpio write 0 1');
+   echo "<pre>".$output."</pre>";
+}  
+if (isset($_POST['button0'])) 
+{ 
+   $output = shell_exec('gpio write 0 0');
+   echo "<pre>".$output."</pre>";
+} 
+?>
+-->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> 
+	addEventListener("load", function() 
+		{ 
+			setTimeout(hideURLbar, 0); 
+		}, false); 
+	function hideURLbar()
+	{ 
+		window.scrollTo(0,1); 
+	} 
+</script>
+
+<script type="text/javascript">
+//refreshs the image without refreshing the page.
+function refresh(node)
+{
+   //refreshes the image ever 2 seconds
+   var check = 2000;
+   (	
+	//refresh function
+   	function startRefresh()
+   	{	//creating var for the page address
+      		var address;
+
+		//checking the address
+      		if(node.src.indexOf('?')>-1)
+      			address = node.src.split('?')[0];
+      		else 
+       			address = node.src;
+      			node.src = address+"?time="+new Date().getTime();
+		
+      		setTimeout(startRefresh,check);
+  	 }
+   )();
+}
+
+//fires this function when the page loads.
+window.onload = function()
+{
+  //assigning the new image to the image tag in html
+  var imgs = document.getElementById('img');
+  refresh(imgs);
+}
+</script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+					<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+					</script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+
+<style>
+.fwd {
+	margin-left:50%
+	}
+.left{
+	margin-left:45%
+	}
+.right{
+	margin-left:25%
+	}
+</style>
+</head>
+<body>
+	<!--- Header Starts Here -->
+	<div class="header">
+		<div class="container">
+			<div class="menu">	
+				<!---pop-up-box-->
+					  <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
+					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+				 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});															
+						});
+				</script>															
+			<a href="#" class="right_bt" id="activator"><img src="images/nav.png" alt=""/></a><p>Menu</p>
+				<div class="box" id="box">
+				   <div class="box_content_center">
+					   <div class="menu_box_list">
+						   <ul>
+							   <li><a href="#home" class="scroll">Home</a></li>
+							   <li class="active"><a href="#top" class="scroll">About</a></li> 
+							   <li><a href="#parts" class="scroll">Parts List</a></li>
+							   <li><a href="#contact" class="scroll">Control Quadcopter</a></li>
+							</ul>
+						</div>
+						<a class="boxclose" id="boxclose"><img src="images/close.png" alt=""/></a>
+					  </div>                
+					</div>
+					<script type="text/javascript" src="js/easing.js"></script>
+					     <script type="text/javascript">
+								var $ = jQuery.noConflict();
+									$(function() {
+										$('#activator').click(function(){
+												$('#box').animate({'top':'0px'},500);
+										});
+										$('#boxclose').click(function(){
+												$('#box').animate({'top':'-700px'},500);
+										});
+									});
+									$(document).ready(function(){
+									
+									//Hide (Collapse) the toggle containers on load
+									$(".toggle_container").hide(); 
+									
+									//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+									$(".trigger").click(function(){
+										$(this).toggleClass("active").next().slideToggle("slow");
+										return false; //Prevent the browser jump to the link anchor
+									});
+									
+									});
+								</script>
+								
+				</div> 
+				<div class="clearfix"></div>
+				<div class="header-bottom">
+					<p><font color="#735e5c">Corey Bannon, C11342611</font></p>
+					<h1><font color="#23a0bc">Quadtrol Pi!</font></h1>
+					<a href="#contact" class="scroll">Control It!</a>
+				</div>
+		</div>
+	</div>
+	<!--- Header Ends Here --->
+	<!-- Aboutus Starts Here -->
+	<div class="aboutus" id="top">
+		<div class="container">
+		<div class="map-header">
+				<h3>About</h3>
+			<div class="row aboutus-row">
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon1"></i>
+					<h3>View</h3>
+					<p>View the live camera feed stright from the raspberry pi to your android smartphone or laptop.</p>
+				</div>
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon2"></i>
+					<h3>Control</h3>
+					<p>Control the quad-copter from anywhere with internet, using either your smartphone or laptop.</p>
+				</div>
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon3"></i>
+					<h3>Monitor</h3>
+					<p>This device enables you to monitor/ check your house while you are away.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<!-- Aboutus Ends Here --->
+	<!-- Interduce Starts Here ---->
+	<div class="interduce">
+		<div class="container">
+			<div style="margin:-80 auto;"  class="row interduce-row">
+				<div class="col-md-6 inter-row-column">
+					<h4>Why Not Use Your Phone?</h4>
+					<p>Are you a person that uses their phone every day? Then why not try the android application, it is FREE and very EASY to use!</p>
+					<p>If you own an android phone with the software version greather than android 4.0.0 then you are ready to use the 
+					android phone application.</p>
+					<p>This android application has all of the same features as this website. Click the link below and you will be directed to the Google Play Store.</p>
+					<ul class="inter-duce">
+						<li><i class="icon5"></i></li>
+					</ul>
+				</div>
+				<div class="col-md-6 inter-row-column2" style="left:100 ; top:-30" >
+					<img src="images/iphone.png" alt=""/>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--- Interduce Ends Here  -->
+	<!--- Slider Starts Here -->
+	<div class="slider">
+		<div class="container">
+			<div class="slider-content">
+				<script src="js/responsiveslides.min.js"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: true,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!---//End-slider-script-->
+			<!-- Slideshow 4 -->
+			    <div id="parts" class="callbacks_container">
+			    <div class="map-header">
+				<h3>Quadcopter Parts List</h3>
+			      <ul class="rslides" id="slider4">
+			        <li>
+			          <div class="slider-top">
+			          	<img src="images/1.jpg" alt=""/>
+			          	<p>"Quadcopter Frame"</p>
+			          	<p class="below">-Q450 V3 Glass Fiber Quadcopter Frame 450mm - Integrated PCB Version</p>
+			          </div>
+			        </li>
+			        <li>
+			          <div class="slider-top">
+			          <img src="images/2.jpg" alt=""/>
+			          	<p class="second-slide">"Quadcopter Motors x 4"</p>
+			          	<p class="below">-Turnigy D3530/14 1100KV Brushless Outrunner Motor </p>
+			          </div>
+			        </li>
+			        <li>
+			          <div class="slider-top">
+			          	<img src="images/3.jpg" alt=""/>
+			          	<p>"Electronic Speed Controllers x 4"</p>
+						<p class="below">-TURNIGY Plush 18amp Speed Controller </p>
+			          </div>
+			        </li>
+			        <li>
+			          <div class="slider-top">
+			          	<img src="images/4.jpg" alt=""/>
+			          	<p>"Power Supply"</p>
+			          	<p class="below">-Multistar High Capacity 3S 4000mAh Multi-Rotor Lipo Pack</p>
+			          </div>
+			        </li>
+			      </ul>
+			    </div>
+			    </div>
+			    <div class="clearfix"> </div>
+	  			<!--- banner Slider Ends Here ---> 
+		</div>
+	</div>
+			</div>
+		</div>
+	</div>
+	<!--- Slider Ends Here --->
+
+	<!--- Map Starts Here ---->
+	
+	<div class="map" id="contact">
+		<div class="container" >
+			<div class="map-header">
+				<h3>Control The Quadcopter</h3>
+				<div class="row map-row">
+					<div class="col-md-5 map-row-column">
+						<div style="width:600px; height:300px; top:20px ;  border: 1px  solid black;margin:0  auto;background-color:#FFFFFF;">
+							<body onload="refresh(node);">
+							<img src="testImg.png" alt="ImgTest" id="img" style="width:600px; height:300px" >
+						<!-- Start Camera window, raspberry pi need configuration to work with this-->
+							<!-- <iframe src="https://embed.bambuser.com/channel/CoreyBannon" width="100%" frameborder="0">
+							Your browser does not support iframes.</iframe> -->
+							<!-- End Camera -->
+							<div style="width:300px; height:150px; top:20px ;margin:-40% 750px;" >
+								<button type="button" class="btn" id="up">/\</button>
+								<button type="button" class="btn fwd" id="fwd">/\</button><br><br>
+								<button type="button" class="btn left" id="left"><</button>
+								<button type="button" class="btn right" id="right">></button><br><br>
+								<button type="button" class="btn" id="down">\/</button>
+								<button type="button" class="btn fwd" id="bwd">\/</button>
+								<div class="onoffswitch" style=" margin:20% 25%;">
+									<form method="POST" action=''>
+										<input type="submit" name="button1" class="btn" value="On">
+										<input type="submit" name="button0" class="btn" value="Off">
+									</form>	
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Map Ends Here ---->
+	<!-- Footer Starts Here ---->
+	<div class="footer" style="margin:-3% auto;">
+		<div class="container">
+			<p>Corey Bannon | C11342611 | DT228 / 4 | Final Year Project | &copy; Copyright 2015<p>
+			<div class="clearfix"></div>
+		</div>
+		<!-- Back to the Top Arrow and Scroll-->
+		<script type="text/javascript">
+						$(document).ready(function() {
+							$().UItoTop({ easingType: 'easeOutQuart' });
+						});
+					</script>
+				<a href="#home" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	</div>
+	<!-- Footer Ends Here ---->
+</body>
+</html>
